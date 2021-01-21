@@ -15,7 +15,7 @@ grep "@db.storage@" /opt/journal/checkpoints/commit.ckp.123 > ~/storage.txt
 ## Installation
 
 ```
-go install github.com/google/perforce-utils/p4_storage_to_csv
+go get github.com/google/perforce-utils/p4_storage_to_csv
 ```
 
 ## Running the tool
@@ -28,6 +28,8 @@ For example:
 ```
 p4_storage_to_csv example_journal.txt > example_journal.csv
 ```
+
+Note: this assumes that your Go bin folder is in your PATH (for example, ~/go/bin on Linux).
 
 You can import the resulting file into SQLite3 for subsequent analysis.
 

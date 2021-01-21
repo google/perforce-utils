@@ -21,7 +21,7 @@ https://forums.perforce.com/index.php?/topic/6806-verifying-missing-files-only/
 ## Installation
 
 ```
-go install github.com/google/perforce-utils/p4_find_missing_files
+go get github.com/google/perforce-utils/p4_find_missing_files
 ```
 
 ## Running the tool
@@ -37,6 +37,8 @@ Options:
 -filter allows to specify a depot path prefix
 
 -verbose turns verbose logging on
+
+Note: this assumes that your Go bin folder is in your PATH (for example, ~/go/bin on Linux).
 
 ## Checking the tool functionality (Windows):
 
