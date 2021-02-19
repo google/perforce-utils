@@ -70,6 +70,8 @@ Since we are not using a domain name but an IP address, we would need to use a s
 xip.io, that does the redirect. You can see the following post for more details:
 https://stackoverflow.com/questions/14238665/can-a-public-ip-address-be-used-as-google-oauth-redirect-uri
 
+**Note: In a production environment, you should always use your own domain name!**
+
 The two URIs you'll need to list are:
 
 -  https://VM_EXTERNAL_IP.xip.io:3000
@@ -96,8 +98,10 @@ To open up all VMs on your GCP network to incoming traffic on ports 1666 and 300
 
 ![Create Firewall](create_firewall.png)
 
-You can give your rule any name (e.g. "helix-and-has"). Select "All instances in the network"
-as targets, choose 0.0.0.0/0 as source IP ranges and specify TCP ports 1666,3000.
+You can give your rule any name (e.g. "helix"). Select "All instances in the network"
+as targets, choose 0.0.0.0/0 as source IP ranges and specify TCP ports 1666.
+
+**Repeat the same process for the HAS port 3000.**
 
 Note: While this rule is fine for testing, consider restricting them to specific VMs by using
 target tags.
@@ -121,7 +125,7 @@ In a nutshell:
 
 ```
 wget -qO - https://package.perforce.com/perforce.pubkey | sudo apt-key add -
-sudo sh -c "echo 'deb http://package.perforce.com/apt/ubuntu xenial release' > /etc/apt/sources.list.d/perforce.list"
+echo 'deb http://package.perforce.com/apt/ubuntu xenial release' | sudo tee /etc/apt/sources.list.d/perforce.list
 sudo apt-get update
 sudo apt-get install -y helix-p4d
 ```
@@ -193,7 +197,7 @@ Answer "Yes" to "Do you wish to continue?"
 To test that the server is up and running, you can navigate to https://VM_EXTERNAL_IP.xip.io:3000/.
 
 Please note that your browser may block this because the site is using a default self-signed
-TSL certificate. In Chrome, you can click on "Advanced" when this happens to proceed.
+TLS certificate. In Chrome, you can click on "Advanced" when this happens to proceed.
 
 **Do not use self-signed certificates in production!**
 
@@ -276,10 +280,10 @@ This guide has been written with the focus on quick demonstration and minimum pr
 However, a lot of shortcuts taken here should not be used in a production environment.
 Here is a list of important considerations:
 
-## TSL Certificates
+## TLS Certificates
 
-Both Helix Core and HAS ship with testing self-signed TSL certificates. These certificates should never
-be used in production. You would need to purchase TSL certificates from a certification authority
+Both Helix Core and HAS ship with testing self-signed TLS certificates. These certificates should never
+be used in production. You would need to purchase TLS certificates from a certification authority
 to replace those.
 
 ## Firwall and access
