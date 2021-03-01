@@ -342,12 +342,12 @@ perform_backup() {
 
   if [[ "${is_edge}" -eq 0 ]]; then
     gsutil \
-      -m rsync -d -r "${depot_path}" 2>&1 \
+      -m rsync -d -r "${depot_path}" \
       gs://"${P4_BACKUP_BUCKET_INCREMENTAL}"/"${server_id}"/ 2>&1 \
       | tee -a "${CURRENT_LOG}"
   else
     gsutil \
-      -m rsync -d -r "${depot_path}"/spec 2>&1 \
+      -m rsync -d -r "${depot_path}"/spec \
       gs://"${P4_BACKUP_BUCKET_INCREMENTAL}"/"${server_id}"/spec 2>&1 \
       | tee -a "${CURRENT_LOG}"
   fi

@@ -198,12 +198,12 @@ perform_backup() {
 
   if [[ "${is_edge}" -eq 0 ]]; then
     gsutil \
-      -m cp -r "${depot_path}" 2>&1 \
+      -m cp -r "${depot_path}" \
       gs://"${P4_BACKUP_BUCKET}"/"${TODAY}"/ 2>&1 \
       | tee -a "${CURRENT_LOG}"
   else
     gsutil \
-      -m cp -r "${depot_path}/spec" 2>&1 \
+      -m cp -r "${depot_path}/spec" \
       gs://"${P4_BACKUP_BUCKET}"/"${TODAY}"/"${server_id}"/spec 2>&1 \
       | tee -a "${CURRENT_LOG}"
   fi

@@ -71,6 +71,8 @@ We recommend configuring a uniform access to all objects in the bucket.
 
 Repeat the bucket creation process for the incremental and regular buckets.
 
+IMPORTANT: The buckets will contain sensitive data, so make sure they are not publicly readable!
+
 ### Granting permissions
 
 You can grant permissions by opening bucket details and navigating to the Permissions tab.
@@ -126,6 +128,7 @@ offline root directory could be /opt/perforce/offline:
 
 ```
 mkdir -p /opt/perforce/offline/demo
+sudo chmod 700 /opt/perforce/offline
 ```
 
 2. Restore the latest checkpoint there. For example:
