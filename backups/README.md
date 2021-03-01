@@ -12,6 +12,8 @@ although the scripts can be easily adjusted to run elsewhere.
 
 Additionally, you will need a Google Cloud account with billing enabled to use GCS.
 
+Finally, the Cloud SDK Command Line Tools should be installed on the machine running the backups.
+
 ## Strategy
 
 The scripts in this directory implement a backup strategy that consists of using two GCS buckets:
@@ -128,7 +130,7 @@ offline root directory could be /opt/perforce/offline:
 
 ```
 mkdir -p /opt/perforce/offline/demo
-sudo chmod 700 /opt/perforce/offline
+chmod 700 /opt/perforce/offline
 ```
 
 2. Restore the latest checkpoint there. For example:
