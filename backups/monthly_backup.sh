@@ -56,7 +56,7 @@ function usercheck () {
 #######################################
 parse_options() {
   set +e
-  OPTS="$(getopt -o "d,e" --long "dry_run,logs_root:,is_edge,help" -n "$(basename "$0")" -- "$@")"
+  OPTS="$(getopt -o 'd,e' --long 'dry_run,logs_root:,is_edge,help' -n $(basename $0) -- $@)"
   if [[ $? != 0 ]]; then
     echo -e "\n$USAGE"
     exit 1

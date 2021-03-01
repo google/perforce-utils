@@ -51,13 +51,13 @@ function usercheck () {
 get_latest_checkpoint () {
   local server_id=$1
   local checkpoints_path=$2
-  echo "$(find "${checkpoints_path}" -name "${server_id}.ckp.*" -type f -printf '%T@ %p\n' | sort -n | grep -v ".md5$" | tail -1 | cut -f2- -d" ")"
+  echo $(find "${checkpoints_path}" -name "${server_id}.ckp.*" -type f -printf '%T@ %p\n' | sort -n | grep -v ".md5$" | tail -1 | cut -f2- -d" ")
 }
 
 get_latest_journal () {
   local server_id=$1
   local checkpoints_path=$2
-  echo "$(find "${checkpoints_path}" -name "${server_id}.jnl.*" -type f -printf '%T@ %p\n' | sort -n | grep -v ".md5$" | tail -1 | cut -f2- -d" ")"
+  echo $(find "${checkpoints_path}" -name "${server_id}.jnl.*" -type f -printf '%T@ %p\n' | sort -n | grep -v ".md5$" | tail -1 | cut -f2- -d" ")
 }
 
 get_free_space () {
@@ -102,7 +102,7 @@ cleanup () {
 #######################################
 parse_options() {
   set +e
-  OPTS="$(getopt -o "d,e" --long "dry_run,logs_root:,is_edge,help" -n "$(basename "$0")" -- "$@")"
+  OPTS="$(getopt -o 'd,e' --long 'dry_run,logs_root:,is_edge,help' -n $(basename $0) -- $@)"
   if [[ $? != 0 ]]; then
     echo -e "\n$USAGE"
     exit 1
