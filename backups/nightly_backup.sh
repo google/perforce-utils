@@ -17,7 +17,7 @@
 # Runs a nightly backup of the Perforce instance.
 # Needs to execute as the user that runs p4d.
 
-USAGE="usage: $(basename "$0") p4_backup_bucket p4_incremental_backup_bucket offline_root [options]
+USAGE="usage: $(basename $0) p4_backup_bucket p4_incremental_backup_bucket offline_root [options]
   options:
     [-d|--dry_run]    (dry run, do not backup) <default '$DRY_RUN'>
     [--logs_root]    (sets the logs root) <default '$LOGS_ROOT'>
