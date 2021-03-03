@@ -280,25 +280,25 @@ This guide has been written with the focus on quick demonstration and minimum pr
 However, a lot of shortcuts taken here should not be used in a production environment.
 Here is a list of important considerations:
 
-## TLS Certificates
+### TLS Certificates
 
 Both Helix Core and HAS ship with testing self-signed TLS certificates. These certificates should never
 be used in production. You would need to purchase TLS certificates from a certification authority
 to replace those.
 
-## Firwall and access
+### Firwall and access
 
 We have exposed the VMs directly to the internet. This is unlikely to be a good security
 best practice even though Helix Core is used with TLS. Consider using measures such as VPN
 or an Identity-Aware Proxy to secure your production environment. Work with a security specialist
 to make sure your deployment is secure.
 
-## Domain name
+### Domain name
 
 While it is possible to use Helix Core and HAS with static IP addresses, it is a good idea to
 use a custom domain name.
 
-## VMs
+### VMs
 
 We have used a single Google Compute Engine VM to install both Helix Core and HAS.
 In a production environment, it is likely that you would want to have a dedicated VM for Helix Core
@@ -309,3 +309,19 @@ In that case, you may consider using a smaller VM specifically for HAS.
 An interesting alternative is to deploy HAS to App Engine Flex as a custom container,
 although there might technical challenges in doing so due to App Engine's use of a reverse proxy
 to manage traffic through a load balancer.
+
+## Logs
+
+In case things go wrong with the Perforce setup, these are the logs to lookout for.
+
+NOTE: SERVER_ROOT represents the place where the Perforce server is installed. In this
+      tutorial it would be `/opt/perforce/servers/demo`.
+NOTE: HAS_ROOT represents the HAS installation (default: `/opt/perforce/helix-auth-svc`).
+
+- Perforce logs: these are the logs of the Perforce application itself.
+  - Location: `${SERVER_ROOT}/logs/log`
+- HAE: these represent the auth extension logs within the Perforce application. These *are not* the
+  logs of the HAS server.
+  - Location: `${SERVER_ROOT}/root/server.extensions.dir/<SOME ALPHANUM ID>/1-data/log.json`
+- HAS: these are the logs of the HAS application.
+  - Location: `${HAS_ROOT}/auth-svc.log`
